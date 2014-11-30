@@ -9,7 +9,8 @@
 require_once __DIR__. '/../../vendor/autoload.php';
 
 try {
-    $parser = new \Vdm\Parser("http://www.viedemerde.fr/?page=%s");
+    $downloader = new \Vdm\Downloader("http://www.viedemerde.fr/?page=%s");
+    $parser = new \Vdm\Parser($downloader);
     $posts = $parser->getPosts();
     $json_posts = json_encode($posts, JSON_UNESCAPED_UNICODE);
     file_put_contents( __DIR__. '/../../data/data.json', $json_posts);
